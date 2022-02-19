@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 
 const RightTypography = (props) => {
     return (
-        <Typography sx={{ flexGrow: 1, }} align='right'>
+        <Typography component={'div'} sx={{ flexGrow: 1, }} align='right'>
             {props.children}
         </Typography>
     )

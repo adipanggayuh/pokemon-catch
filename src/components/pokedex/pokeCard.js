@@ -1,9 +1,7 @@
 
 import React from 'react';
-import { Button, Card, CardContent, Chip, Toolbar, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, Chip, Grid, Typography } from '@mui/material';
 import { getBgImage, getImage } from '../../helper/helper';
-import LeftTypography from '../typography/LeftTypography';
-import RightTypography from '../typography/RightTypography';
 const PokedexCard = ({ poke, index, onRelease }) => {
 
     return (
@@ -11,7 +9,7 @@ const PokedexCard = ({ poke, index, onRelease }) => {
         <Grid item xs={6} key={index}>
             <Card style={{ backgroundImage: `url(${getBgImage(poke)})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                 <CardContent>
-                    <Typography sx={{ flexGrow: 1, }} align='center'>
+                    <Typography component="div" sx={{ flexGrow: 1, }} align='center'>
                         <img src={getImage(poke)} alt="" style={{ maxHeight: 100 }} />
                     </Typography>
                     <div style={{ textAlign: 'center' }}>

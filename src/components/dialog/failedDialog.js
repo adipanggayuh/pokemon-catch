@@ -20,7 +20,7 @@ const FailedDialog = ({ open, setOpen, onCatchAgain }) => {
 
         <Dialog open={open} onClose={handleClose} >
             <DialogContent>
-                <Typography align='center'>
+                <Typography component="div" align='center'>
                     <img src={failedImage} alt="" height={200} width={200} />
                 </Typography>
             </DialogContent>
