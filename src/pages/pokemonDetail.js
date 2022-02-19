@@ -3,46 +3,21 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_POKEMON_LIST_URL } from '../constant/apiUrl';
 import {
-    Container, Grid, Card, CardContent, Typography, Toolbar, Box,
-    Tabs,
-    Tab, Chip
+    Container, Grid, Card, CardContent, Typography, Toolbar, Chip
 } from '@mui/material';
 import SuccessDialog from '../components/dialog/successDialog';
 import FailedDialog from '../components/dialog/failedDialog';
 import { addtoPokedexAction } from '../action/accommodationAction';
 import { useDispatch } from 'react-redux';
 import whiteBg from '../media/normalbg.png';
-import { getBgImage, getImage } from '../helper/helper';
+import { capitalizeFirstChar, getBgImage, getImage } from '../helper/helper';
 import defaultImg from '../media/default.svg';
 import LeftTypography from '../components/typography/LeftTypography';
 import RightTypography from '../components/typography/RightTypography';
 import CatchButton from '../components/button/catchButton';
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+import PokeTabs from '../components/pokeDetail/pokeTabs';
+import { extractValue } from '../helper/helper';
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography component="div">{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
 const PokemonDetail = () => {
     // ======== variable and state =======
     const params = useParams();
@@ -55,7 +30,6 @@ const PokemonDetail = () => {
     const [success, setSuccess] = useState(false);
     const [bgImage, setBgImage] = useState(whiteBg);
     const [pokeImage, setPokeImage] = useState(defaultImg);
-    const [tabVal, setTabVal] = useState(0);
     const [moves, setMoves] = useState([]);
 
     // ========= function =======
@@ -67,7 +41,9 @@ const PokemonDetail = () => {
             setMoves(getMoves(res.data));
         })
     }
-
+    const getMoves = (poke) => {
+        return poke.moves ? extractValue(poke.moves, 'move') : [];
+    }
     const handleButtonClick = () => {
         if (!loading) {
             setSuccess(false);
@@ -103,28 +79,6 @@ const PokemonDetail = () => {
         };
     }, []);
 
-
-    const handleChange = (event, newValue) => {
-        setTabVal(newValue);
-    };
-    const getTypes = (poke) => {
-        let types = poke.types ? extractValue(poke.types, 'type') : [];
-        return types.join();
-    }
-    const getMoves = (poke) => {
-        return poke.moves ? extractValue(poke.moves, 'move') : [];
-    }
-    const extractValue = (array, paramName) => {
-        return array.reduce((acc, cur) => {
-            acc.push(cur[paramName].name);
-            return acc;
-        }, []);
-    }
-
-    const getAbilities = (poke) => {
-        let abilities = poke.abilities ? extractValue(poke.abilities, 'ability') : [];
-        return abilities.join();
-    }
     return (
         <Container>
             <Grid item xs={12}>
@@ -154,7 +108,7 @@ const PokemonDetail = () => {
                     >
                         <Toolbar disableGutters>
                             <LeftTypography>
-                                {pokeInfo.name && <Chip label={pokeInfo.name} sx={{ fontSize: 20 }} />}
+                                {pokeInfo.name && <Chip label={capitalizeFirstChar(pokeInfo.name)} sx={{ fontSize: 20 }} />}
                             </LeftTypography>
                             <RightTypography>
                                 <CatchButton
@@ -164,48 +118,7 @@ const PokemonDetail = () => {
                                 />
                             </RightTypography>
                         </Toolbar>
-                        <Box sx={{ width: '100%' }}>
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={tabVal} onChange={handleChange} aria-label="basic tabs example">
-                                    <Tab label="About" {...a11yProps(0)} />
-                                    <Tab label="Moves" {...a11yProps(1)} />
-                                </Tabs>
-                            </Box>
-                            <TabPanel value={tabVal} index={0}>
-                                <Grid container>
-                                    <Grid item xs={3}>
-                                        Types
-                                    </Grid>
-                                    <Grid item xs={9}>
-                                        : {getTypes(pokeInfo)}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        Height
-                                    </Grid>
-                                    <Grid item xs={9}>
-                                        : {pokeInfo.height}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        Wight
-                                    </Grid>
-                                    <Grid item xs={9}>
-                                        : {pokeInfo.weight}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        Abilities
-                                    </Grid>
-                                    <Grid item xs={9}>
-                                        : {getAbilities(pokeInfo)}
-                                    </Grid>
-                                </Grid>
-                            </TabPanel>
-
-                            <TabPanel value={tabVal} index={1}>
-                                {moves.length > 0 && moves.map(move => {
-                                    return <Chip key={move} label={move} />
-                                })}
-                            </TabPanel>
-                        </Box>
+                        <PokeTabs pokeInfo={pokeInfo} moves={moves} />
                     </CardContent>
                 </Card>
             </Grid>

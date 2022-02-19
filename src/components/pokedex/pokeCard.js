@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button, Card, CardContent, Chip, Grid, Typography } from '@mui/material';
-import { getBgImage, getImage } from '../../helper/helper';
+import { capitalizeFirstChar, getBgImage, getImage } from '../../helper/helper';
 const PokedexCard = ({ poke, index, onRelease }) => {
 
     return (
@@ -13,7 +13,7 @@ const PokedexCard = ({ poke, index, onRelease }) => {
                         <img src={getImage(poke)} alt="" style={{ maxHeight: 100 }} />
                     </Typography>
                     <div style={{ textAlign: 'center' }}>
-                        <Chip style={{ fontSize: 13, }} label={`${poke.nickName} - ${poke.name}`} />
+                        <Chip style={{ fontSize: 13, }} label={`${poke.nickName} - ${capitalizeFirstChar(poke.name)}`} />
                     </div>
                 </CardContent>
                 <CardContent sx={{ textAlign: "center" }}>

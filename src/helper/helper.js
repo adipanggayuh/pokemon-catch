@@ -15,9 +15,21 @@ const getFirstType = (poke) => {
 const getImage = (poke) => {
     return poke?.sprites?.other?.dream_world?.front_default || defaultImage;
 }
+const extractValue = (array, paramName) => {
+    return array.reduce((acc, cur) => {
+        acc.push(cur[paramName].name);
+        return acc;
+    }, []);
+}
+
+const capitalizeFirstChar = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 export {
     getBgImage,
     getFirstType,
-    getImage
+    getImage,
+    extractValue,
+    capitalizeFirstChar
 }

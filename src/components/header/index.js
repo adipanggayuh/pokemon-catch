@@ -23,7 +23,7 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LeftTypography>
-                        <img src={logo} alt='' height={70} width={145} onClick={navigateHome} />
+                        <img src={logo} alt='' onClick={navigateHome} />
                     </LeftTypography>
                     <RightTypography sx={{ flexGrow: 1, }} align='right'>
                         <BadgeButton badgeContent={pokedex.length} onClick={navigatePokedex} />
