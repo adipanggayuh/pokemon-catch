@@ -11,7 +11,7 @@ const PokedexInfo = () => {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            sx={{ paddingTop: 2, paddingLeft: 2 }}
+            sx={{ paddingLeft: 2 }}
         >
             <img src={pokedexImg} alt='' height={40} width={40} style={{ marginRight: '10px' }} />
             <text>you have {pokedex.length} pokemon</text>

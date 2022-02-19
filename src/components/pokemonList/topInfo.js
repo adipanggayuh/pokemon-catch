@@ -8,11 +8,9 @@ const TopInfo = ({ onNext, onPrev }) => {
             <Typography >
                 <PokedexInfo />
             </Typography>
-            <Typography variant="h5" sx={{ display: 'flex', flex: 1, marginTop: 2 }}>
+            <Typography variant="h5" sx={{ display: 'flex', flex: 1 }}>
                 <Navigation onNextData={onNext} onPrevData={onPrev} />
             </Typography>
-
-
         </Grid >
     )
 }

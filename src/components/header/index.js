@@ -20,7 +20,7 @@ const Header = () => {
     }
     return (
 
-        <AppBar position="static">
+        <AppBar position="static" sx={{ marginBottom: 2 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography

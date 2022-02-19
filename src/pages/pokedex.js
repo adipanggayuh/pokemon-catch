@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Card, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { removeFromPokedexAction } from '../action/accommodationAction';
+import PokedexCard from '../components/pokedex/pokeCard';
 
 const Pokedex = () => {
     const dispatch = useDispatch();
@@ -16,12 +17,7 @@ const Pokedex = () => {
                 {
                     pokedex.length > 0 && pokedex.map((poke, i) => {
                         return (
-                            <Grid item xs={6} key={i}>
-                                <Card>
-                                    {poke.nickName + poke.name}
-                                    <Button onClick={() => onRelease(i)}>Release</Button>
-                                </Card>
-                            </Grid>
+                            <PokedexCard poke={poke} index={i} onRelease={onRelease} />
                         )
                     })
                 }
