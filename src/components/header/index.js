@@ -8,6 +8,7 @@ import LeftTypography from '../typography/LeftTypography';
 import RightTypography from '../typography/RightTypography';
 import logo from '../../media/logopoke.webp';
 import BadgeButton from './badgeButton';
+import white from '../../media/whiteheader.png';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Header = () => {
         navigate('/pokedex');
     }
     return (
-        <AppBar position="static" sx={{ marginBottom: 2 }}>
+        <AppBar position="static" sx={{ marginBottom: 2, backgroundImage: `url(${white})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LeftTypography>

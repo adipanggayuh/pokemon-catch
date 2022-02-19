@@ -13,7 +13,7 @@ const PokedexCard = ({ poke, index, onRelease }) => {
                         <img src={getImage(poke)} alt="" style={{ maxHeight: 100 }} />
                     </Typography>
                     <div style={{ textAlign: 'center' }}>
-                        <Chip style={{ fontSize: 13, }} label={`${poke.nickName} - ${capitalizeFirstChar(poke.name)}`} />
+                        <Chip style={{ fontSize: 13, }} label={`${capitalizeFirstChar(poke.nickName)} - ${capitalizeFirstChar(poke.name)}`} />
                     </div>
                 </CardContent>
                 <CardContent sx={{ textAlign: "center" }}>

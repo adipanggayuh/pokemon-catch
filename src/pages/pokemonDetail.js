@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import SuccessDialog from '../components/dialog/successDialog';
 import FailedDialog from '../components/dialog/failedDialog';
-import { addtoPokedexAction } from '../action/accommodationAction';
+import { addtoPokedexAction } from '../action/pokeAction';
 import { useDispatch } from 'react-redux';
 import whiteBg from '../media/normalbg.png';
 import { capitalizeFirstChar, getBgImage, getImage } from '../helper/helper';
