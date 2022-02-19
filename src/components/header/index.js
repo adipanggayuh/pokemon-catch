@@ -44,7 +44,7 @@ const Header = () => {
                     </Typography>
                     <Typography sx={{ flexGrow: 1, }} align='right'>
 
-                        <IconButton aria-label="pokedex" onClick={navigatePokedex}>
+                        <IconButton title='pokedex' onClick={navigatePokedex}>
                             <Badge badgeContent={pokedex.length} color="secondary">
                                 <CatchingPokemon sx={{ color: '#ffff', fontSize: 30 }} />
                             </Badge>
