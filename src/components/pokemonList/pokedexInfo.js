@@ -13,7 +13,7 @@ const PokedexInfo = () => {
             alignItems="center"
             sx={{ paddingTop: 2, paddingLeft: 2 }}
         >
-            <img src={pokedexImg} alt='' height={40} style={{ marginRight: '10px' }} />
+            <img src={pokedexImg} alt='' height={40} width={40} style={{ marginRight: '10px' }} />
             <text>you have {pokedex.length} pokemon</text>
         </Grid >
     )

@@ -30,7 +30,7 @@ const Header = () => {
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
 
-                        <img src={logo} alt='' height={70} onClick={navigateHome} />
+                        <img src={logo} alt='' height={70} width={145} onClick={navigateHome} />
 
                     </Typography>
 
@@ -40,7 +40,7 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <img src={logo} alt='' height={70} />
+                        <img src={logo} alt='' height={70} width={145} />
                     </Typography>
                     <Typography sx={{ flexGrow: 1, }} align='right'>
 

@@ -39,7 +39,7 @@ const SuccessDialog = ({ open, setOpen, onSubmit }) => {
 
             <DialogContent>
                 <Typography align='center'>
-                    <img src={successImage} alt="" height={200} />
+                    <img src={successImage} alt="" height={200} width={200} />
                 </Typography>
                 <TextField
                     error={error}
