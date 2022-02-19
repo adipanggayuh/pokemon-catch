@@ -6,10 +6,10 @@ const NavigationList = ({ onNextData, onPrevData }) => {
     return (
 
         <Grid item xs={12} textAlign={'right'}>
-            <IconButton onClick={onPrevData}>
+            <IconButton onClick={onPrevData} arial-label="prev">
                 <NavigateBeforeIcon />
             </IconButton>
-            <IconButton onClick={onNextData}>
+            <IconButton onClick={onNextData} aria-label="next">
                 <NavigateNextIcon />
             </IconButton>
         </Grid>
