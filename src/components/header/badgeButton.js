@@ -6,7 +6,7 @@ const BadgeButton = ({ badgeContent, onClick }) => {
     return (
         <IconButton title='pokedex' onClick={onClick}>
             <Badge badgeContent={badgeContent} color="error">
-                <CatchingPokemon sx={{ fontSize: 30 }} color='primary' />
+                <CatchingPokemon sx={{ fontSize: 30, color: '#ffff' }} />
             </Badge>
         </IconButton>
     );
