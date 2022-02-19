@@ -1,12 +1,10 @@
-import CatchingPokemon from '@mui/icons-material/CatchingPokemon';
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_POKEMON_LIST_URL } from '../constant/apiUrl';
 import {
-    Box, Fab, CircularProgress, Container, Grid, Card, CardContent, Typography, Toolbar
+    Container, Grid, Card, CardContent, Typography, Toolbar
 } from '@mui/material';
-import { green, red } from '@mui/material/colors';
 import SuccessDialog from '../components/dialog/successDialog';
 import FailedDialog from '../components/dialog/failedDialog';
 import { addtoPokedexAction } from '../action/accommodationAction';
@@ -14,6 +12,9 @@ import { useDispatch } from 'react-redux';
 import whiteBg from '../media/normalbg.png';
 import { getBgImage, getImage } from '../helper/helper';
 import defaultImg from '../media/default.svg';
+import LeftTypography from '../components/typography/LeftTypography';
+import RightTypography from '../components/typography/RightTypography';
+import CatchButton from '../components/button/catchButton';
 
 const PokemonDetail = () => {
     // ======== variable and state =======
@@ -28,19 +29,6 @@ const PokemonDetail = () => {
     const [bgImage, setBgImage] = useState(whiteBg);
     const [pokeImage, setPokeImage] = useState(defaultImg);
 
-    const buttonSx = {
-        ...(success ? {
-            bgcolor: green[500],
-            '&:hover': {
-                bgcolor: green[700],
-            },
-        } : {
-            bgcolor: red[500],
-            '&:hover': {
-                bgcolor: red[700],
-            },
-        }),
-    };
     // ========= function =======
     const fetchData = () => {
         axios.get(`${GET_POKEMON_LIST_URL}/${params.pokeid}`).then((res) => {
@@ -89,67 +77,53 @@ const PokemonDetail = () => {
     return (
         <Container>
             <Grid item xs={12}>
-                <Card style={{ backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+                <Card
+                    style={{
+                        backgroundImage: `url(${bgImage})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10
+                    }}
+                >
                     <CardContent>
                         <Typography sx={{ flexGrow: 1, }} align='center'>
                             <img src={pokeImage} alt="" height={270} />
                         </Typography>
                     </CardContent>
-                    <CardContent sx={{ backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+                    <CardContent
+                        sx={{
+                            backgroundColor: '#ffff',
+                            borderTopLeftRadius: 10,
+                            borderTopRightRadius: 10
+                        }}
+                    >
                         <Toolbar disableGutters>
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="div"
-                                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                            >
-
+                            <LeftTypography>
                                 {pokeInfo.name && <div>{pokeInfo.name}</div>}
-
-                            </Typography>
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="div"
-                                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                            >
-                                {pokeInfo.name && <div>{pokeInfo.name}</div>}
-                            </Typography>
-                            <Typography sx={{ flexGrow: 1, }} align='right'>
-
-                                <Box sx={{ alignItems: 'center' }}>
-
-                                    <Box sx={{ m: 1, position: 'relative' }}>
-                                        <Fab
-                                            aria-label="save"
-                                            color="primary"
-                                            sx={buttonSx}
-                                            onClick={handleButtonClick}
-                                        >
-                                            <CatchingPokemon />
-                                        </Fab>
-                                        {loading && (
-                                            <CircularProgress
-                                                size={68}
-                                                sx={{
-                                                    color: red[500],
-                                                    position: 'absolute',
-                                                    top: -6,
-                                                    right: -6,
-                                                    zIndex: 1,
-                                                }}
-                                            />
-                                        )}
-                                    </Box>
-                                </Box>
-                            </Typography>
+                            </LeftTypography>
+                            <RightTypography>
+                                <CatchButton
+                                    success={success}
+                                    onClick={handleButtonClick}
+                                    loading={loading}
+                                />
+                            </RightTypography>
                         </Toolbar>
                     </CardContent>
                 </Card>
             </Grid>
 
-            <SuccessDialog open={openSuccessDialog} setOpen={setOpenSuccessDialog} onSubmit={addToPokedex} />
-            <FailedDialog open={openFailedDialog} setOpen={setOpenFailedDialog} onCatchAgain={handleButtonClick} />
+            <SuccessDialog
+                open={openSuccessDialog}
+                setOpen={setOpenSuccessDialog}
+                onSubmit={addToPokedex}
+            />
+            <FailedDialog
+                open={openFailedDialog}
+                setOpen={setOpenFailedDialog}
+                onCatchAgain={handleButtonClick}
+            />
         </Container>
     )
 }

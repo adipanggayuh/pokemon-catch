@@ -1,7 +1,9 @@
 
 import React from 'react';
-import { Button, Card, CardContent, Chip, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, Chip, Toolbar, Grid, Typography } from '@mui/material';
 import { getBgImage, getImage } from '../../helper/helper';
+import LeftTypography from '../typography/LeftTypography';
+import RightTypography from '../typography/RightTypography';
 const PokedexCard = ({ poke, index, onRelease }) => {
 
     return (
@@ -9,23 +11,22 @@ const PokedexCard = ({ poke, index, onRelease }) => {
         <Grid item xs={6} key={index}>
             <Card style={{ backgroundImage: `url(${getBgImage(poke)})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                 <CardContent>
-                    <Typography >
-                        <Typography item xs={6}>
-                            <img src={getImage(poke)} alt="" height={100} />
-                        </Typography>
-                        <Typography item xs={6}>
-                            <Chip sx={{ fontSize: '20px' }} label={poke.nickName} />
-
-                            <Chip label={poke.name} />
-
-                        </Typography>
+                    <Typography sx={{ flexGrow: 1, }} align='center'>
+                        <img src={getImage(poke)} alt="" style={{ maxHeight: 100 }} />
                     </Typography>
-
-
-
+                    <div style={{ textAlign: 'center' }}>
+                        <Chip style={{ fontSize: 13, }} label={`${poke.nickName} - ${poke.name}`} />
+                    </div>
                 </CardContent>
-                <CardContent sx={{ textAlign: "right" }}>
-                    <Button variant="contained" size="medium" onClick={() => onRelease(index)} sx={{ backgroundColor: '#ef5350' }}>Release</Button>
+                <CardContent sx={{ textAlign: "center" }}>
+                    <Button
+                        variant="contained"
+                        size="medium"
+                        onClick={() => onRelease(index)}
+                        sx={{ backgroundColor: '#ef5350' }}
+                    >
+                        Release
+                    </Button>
                 </CardContent>
             </Card>
         </Grid>
