@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../media/logopoke.png';
+import logo from '../../media/logopoke.webp';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';

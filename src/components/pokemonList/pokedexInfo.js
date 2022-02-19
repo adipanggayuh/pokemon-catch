@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import pokedexImg from '../../media/pokedex.jpg';
+import pokedexImg from '../../media/pokedex.webp';
 import { useSelector } from 'react-redux';
 
 const PokedexInfo = () => {
